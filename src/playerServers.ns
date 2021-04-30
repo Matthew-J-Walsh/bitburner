@@ -97,6 +97,8 @@ export async function main(ns) {
   while (true) {
     let didChange = false
 
+    ns.upgradeHomeRam();
+
     const serverMap = getItem(settings.keys.serverMap)
     let purchasedServers = getPurchasedServers(ns)
 
