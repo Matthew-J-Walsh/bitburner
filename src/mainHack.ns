@@ -3,6 +3,8 @@ const settings = {
   homeRamReservedBase: 30,
   homeRamExtraRamReserved: 20,
   homeRamBigMode: 64,
+  homeRamSuperExtraRamReserved: 60,
+  homeRamSuperBigMode: 256,
   minSecurityLevelOffset: 1,
   maxMoneyMultiplayer: 0.9,
   minSecurityWeight: 100,
@@ -164,6 +166,9 @@ export async function main(ns) {
     const serverMap = getItem(settings.keys.serverMap)
     if (serverMap.servers.home.ram >= settings.homeRamBigMode) {
       settings.homeRamReserved = settings.homeRamReservedBase + settings.homeRamExtraRamReserved
+    }
+    if (serverMap.servers.home.ram >= settings.homeRamSuperBigMode){
+      settings.homeRamReserved = settings.homeRamReserved + settings.homeRamSuperExtraRamReserved
     }
 
     if (!serverMap || serverMap.lastUpdate < new Date().getTime() - settings.mapRefreshInterval) {
